@@ -1,7 +1,3 @@
-// ==========================================
-// rapido_screen.dart
-// Pantalla destino de "Rapido Y Rico"
-// ==========================================
 import 'package:flutter/material.dart';
 
 class RapidoYRicoScreen extends StatelessWidget {
