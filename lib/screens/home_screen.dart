@@ -236,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ====== TARJETA DESTACADO (RÁPIDO Y RICO) ===================================
+  //  TARJETA DESTACADO (RÁPIDO Y RICO) 
   Widget _featuredCard(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(18),
@@ -307,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ====== BOTTOM NAVIGATION BAR ================================================
+  //BOTTOM NAVIGATION BAR 
   Widget _bottomBar() {
     return BottomNavigationBar(
       currentIndex: _currentIndex,
@@ -333,7 +333,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ====== BUILD ================================================================
+  // BUILD 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
