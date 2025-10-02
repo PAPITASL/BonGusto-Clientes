@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'restaurante_screen.dart'; // 👈 importa tu pantalla Restaurante
-import 'mesero_screen.dart';     // 👈 importa tu pantalla Mesero
+import 'restaurante_screen.dart'; //importa tu pantalla Restaurante
+import 'mesero_screen.dart';     //importa tu pantalla Mesero
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
