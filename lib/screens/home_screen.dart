@@ -1,7 +1,3 @@
-// ============================================================
-// home_screen.dart
-// Pantalla de inicio con restaurantes y modal tipo Rappi
-// ============================================================
 import 'package:flutter/material.dart';
 import 'menu_screen.dart';
 
@@ -16,7 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   static const kBrandRed = Color(0xFFB2281D);
   int _currentIndex = 0;
 
-  // ====== FUNCIÓN PARA ABRIR LA TARJETA MODAL ==================
+  // FUNCIÓN PARA ABRIR LA TARJETA MODAL 
   void _openRestaurantCard(String title, String subtitle, String imagePath) {
     showModalBottomSheet(
       context: context,
