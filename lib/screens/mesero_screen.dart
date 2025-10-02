@@ -1,4 +1,7 @@
+import 'package:bongustoap/screens/perfil_screen.dart';
 import 'package:flutter/material.dart';
+import 'pedidos_screen.dart';
+import 'menu_screen.dart';
 
 class MeseroScreen extends StatefulWidget {
   const MeseroScreen({super.key});
@@ -15,21 +18,49 @@ class _MeseroScreenState extends State<MeseroScreen> {
       currentIndex: _currentIndex,
       onTap: (i) {
         setState(() => _currentIndex = i);
-        // Aquí podrías navegar a otras pantallas
-        final labels = ['Inicio', 'Pedidos', 'Mapa', 'Perfil'];
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('${labels[i]} (demo)')),
-        );
+
+        if (i == 0) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const MenuScreen()),
+          );
+        } else if (i == 1) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const PedidosScreen()),
+          );
+        } else if (i == 2) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Mapa (demo)")),
+          );
+        } else if (i == 3) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const PerfilScreen()),
+          );
+        }
       },
       type: BottomNavigationBarType.fixed,
       selectedItemColor: Colors.red,
       unselectedItemColor: Colors.black38,
       showUnselectedLabels: true,
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Inicio'),
-        BottomNavigationBarItem(icon: Icon(Icons.list_alt_outlined), label: 'Pedidos'),
-        BottomNavigationBarItem(icon: Icon(Icons.map_outlined), label: 'Mapa'),
-        BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Perfil'),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_outlined),
+          label: 'Inicio',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.list_alt_outlined),
+          label: 'Pedidos',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.map_outlined),
+          label: 'Mapa',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person_outline),
+          label: 'Perfil',
+        ),
       ],
     );
   }
@@ -79,10 +110,9 @@ class _MeseroScreenState extends State<MeseroScreen> {
               height: 48,
               child: ElevatedButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Se registró que ya te atendieron")),
-                  );
+                  Navigator.pushReplacementNamed(context, '/menu');
                 },
+
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   shape: RoundedRectangleBorder(
