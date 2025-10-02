@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'platos_screen.dart'; // 👈 Importa la nueva pantalla de platos
+import 'platos_screen.dart'; //Importa la nueva pantalla de platos
 
 class RestauranteScreen extends StatefulWidget {
   const RestauranteScreen({super.key});
@@ -11,7 +11,7 @@ class RestauranteScreen extends StatefulWidget {
 class _RestauranteScreenState extends State<RestauranteScreen> {
   int _currentIndex = 0;
 
-  // 🔽 Barra inferior
+  // Barra inferior
   Widget _bottomBar() {
     return BottomNavigationBar(
       currentIndex: _currentIndex,
@@ -40,10 +40,10 @@ class _RestauranteScreenState extends State<RestauranteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _bottomBar(), // ✅ Barra inferior
+      bottomNavigationBar: _bottomBar(), // Barra inferior
       body: Stack(
         children: [
-          // 🔥 Contenido principal con scroll
+          // Contenido principal con scroll
           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,7 +213,7 @@ class _RestauranteScreenState extends State<RestauranteScreen> {
     );
   }
 
-  // 🔥 Card de categorías (redirige a MenuPlatosPage)
+  //Card de categorías (redirige a MenuPlatosPage)
   Widget _categoriaCard(String title, String imagePath) {
     return GestureDetector(
       onTap: () {
