@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DetallePlatoPage extends StatelessWidget {
+  // ====== Datos del plato (recibidos desde la lista) ======
   final String nombre;
   final String descripcion;
   final String precio;
@@ -17,153 +18,162 @@ class DetallePlatoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
-          // Imagen con gradiente
-          Column(
+          // ===== Imagen superior con gradiente y botones =====
+          Stack(
             children: [
-              Stack(
-                children: [
-                  // Imagen del plato
-                  Container(
-                    width: double.infinity,
-                    height: 280,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(imagen),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+              // Imagen grande del plato
+              Container(
+                width: double.infinity,
+                height: 320,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(imagen),
+                    fit: BoxFit.cover,
                   ),
-                  // Gradiente abajo
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      height: 120,
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.transparent,
-                            Colors.white,
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  // Botón regresar
-                  Positioned(
-                    top: 40,
-                    left: 20,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white.withOpacity(0.8),
-                      child: IconButton(
-                        icon: const Icon(Icons.arrow_back, color: Colors.red),
-                        onPressed: () => Navigator.pop(context),
-                      ),
-                    ),
-                  ),
-                  // Botón carrito
-                  Positioned(
-                    top: 40,
-                    right: 20,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.red,
-                      child: IconButton(
-                        icon: const Icon(Icons.shopping_cart, color: Colors.white),
-                        onPressed: () {
-                          // Ir al carrito
-                        },
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
 
-              // Contenido del detalle
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Nombre
-                      Text(
-                        nombre,
-                        style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
+              // Gradiente que difumina la parte inferior de la imagen hacia blanco
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  height: 140,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.white,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
 
-                      // Descripción
-                      Text(
-                        descripcion,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
+              // Botón volver (arriba izquierda)
+              Positioned(
+                top: 40,
+                left: 16,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white.withOpacity(0.9),
+                  radius: 20,
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(Icons.arrow_back, color: Colors.red),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ),
+              ),
 
-                      // Precio
-                      Text(
-                        "\$$precio",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.redAccent,
-                        ),
-                      ),
-                      const SizedBox(height: 25),
-
-                      // Botón
-                      Center(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.redAccent,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          onPressed: () {
-                            // Acción agregar al carrito
-                          },
-                          child: const Text(
-                            "Agregar al carrito",
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    ],
+              // Botón carrito (arriba derecha)
+              Positioned(
+                top: 40,
+                right: 16,
+                child: CircleAvatar(
+                  backgroundColor: const Color(0xFFB2281D), // color de marca
+                  radius: 20,
+                  child: IconButton(
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(Icons.shopping_cart, color: Colors.white),
+                    onPressed: () {
+                      // TODO: abrir carrito
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Carrito (demo)")),
+                      );
+                    },
                   ),
                 ),
               ),
             ],
           ),
+
+          // ===== Contenido (nombre, descripción, precio, botón) =====
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Título
+                  Text(
+                    nombre,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+
+                  // Descripción (parrafo)
+                  Text(
+                    descripcion,
+                    style: const TextStyle(fontSize: 15, color: Colors.black87),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Precio
+                  Text(
+                    precio,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+
+                  // Botón grande centrado "Agregar al carrito"
+                  Center(
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFB2281D),
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        onPressed: () {
+                          // TODO: agregar lógica de añadir al carrito
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Agregado al carrito (demo)")),
+                          );
+                        },
+                        child: const Text(
+                          "Agregar al carrito",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
 
-      // Barra inferior
+      // Barra inferior (igual estilo que en otras pantallas)
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.redAccent,
+        selectedItemColor: const Color(0xFFB2281D),
         unselectedItemColor: Colors.black38,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Inicio"),
-          BottomNavigationBarItem(icon: Icon(Icons.receipt_long), label: "Pedidos"),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: "Mapa"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Perfil"),
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Inicio'),
+          BottomNavigationBarItem(icon: Icon(Icons.list_alt_outlined), label: 'Pedidos'),
+          BottomNavigationBarItem(icon: Icon(Icons.map_outlined), label: 'Mapa'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Perfil'),
         ],
         currentIndex: 0,
-        onTap: (index) {
-          // navegación inferior
+        onTap: (i) {
+          //TODO: navegación entre pestañas
         },
       ),
     );
